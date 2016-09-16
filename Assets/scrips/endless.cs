@@ -4,19 +4,27 @@ using System.Collections;
 public class endless : MonoBehaviour {
     public GameObject plat;
     public GameObject[] ojects;
-    public GameObject[] spawnedOjects;
-    public GameObject[] platforms;
+    public GameObject[] backgrounds;
 
-   
+    private GameObject[] spawnedBackgrounds;
+    private GameObject[] spawnedPlatforms;
+    private GameObject[] spawnedOjects;
+
+    private Vector3 bgSpawn;
     private Vector3 objSpawn;
     private Vector3 platformSpawnpoint;
-    
-	void Start () {
-       
-        
-        platformSpawnpoint.x = 40;
+
+
+
+    Quaternion q = Quaternion.Euler(-90, 0, 0);
+    void Start () {
+        bgSpawn.x = 39;
+        bgSpawn.y = 4f;
+
+        platformSpawnpoint.x = 39;
         platformSpawnpoint.y = -5.5f;
 
+        Instantiate(backgrounds[Random.Range(0, 1)], bgSpawn, q);
         Instantiate(plat, platformSpawnpoint, Quaternion.identity);
 
         
@@ -26,24 +34,33 @@ public class endless : MonoBehaviour {
 	void Update () {
         objSpawn.x = Random.Range(20.5f, 39.5f);
 
-       
 
-        platforms = GameObject.FindGameObjectsWithTag("platform");
+        spawnedBackgrounds = GameObject.FindGameObjectsWithTag("bg");
+        spawnedPlatforms = GameObject.FindGameObjectsWithTag("platform");
         spawnedOjects = GameObject.FindGameObjectsWithTag("object");
 
-        for (int i = 0; i<platforms.Length; i++)
+        for (int i = 0; i<spawnedPlatforms.Length; i++)
         {
-            platforms[i].transform.position -= new Vector3(5 * Time.deltaTime, 0, 0);
-            if (platforms[i].transform.position.x <= -40)
+            spawnedPlatforms[i].transform.position -= new Vector3(5 * Time.deltaTime, 0, 0);
+
+            if (spawnedPlatforms[i].transform.position.x <= -40)
             {
+                
+                
+                Instantiate(backgrounds[Random.Range(0, 1)], bgSpawn, q);
                 Instantiate(plat, platformSpawnpoint, Quaternion.identity);
                 Instantiate(ojects[0], objSpawn, Quaternion.identity);
-                Destroy(platforms[i]);
+                Destroy(spawnedPlatforms[i]);
             }
         }
-        for(int j = 0; j < spawnedOjects.Length; j++)
+        for(int i = 0; i < spawnedOjects.Length; i++)
         {
-            spawnedOjects[j].transform.position -= new Vector3(5 * Time.deltaTime, 0, 0);
+            spawnedOjects[i].transform.position -= new Vector3(5 * Time.deltaTime, 0, 0);
         }
+        for(int j = 0; j< spawnedBackgrounds.Length; j++)
+        {
+            spawnedBackgrounds[j].transform.position -= new Vector3(5 * Time.deltaTime, 0, 0);
+        }
+        
 	}
 }
