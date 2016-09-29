@@ -16,6 +16,6 @@ public class textManeger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         text[0].text ="score: " + (int)theScore.gameScore;
-       
+       //adsfasdfasdf;lasjdf
 	}
 }
