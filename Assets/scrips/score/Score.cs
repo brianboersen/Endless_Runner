@@ -2,11 +2,21 @@
 using System.Collections;
 
 public class Score : MonoBehaviour {
-    public float gameScore = 0;
+    private float _score;
+    private float timer;
+    public float gameScore
+    {   get {return _score;}
+        set { }      
+    }
     public int walkpoints;
 
+    void Start() {
+        _score = 0;
+    }
+
 	void Update () {
-        gameScore = Time.time * walkpoints;
+        timer += Time.deltaTime;
+        _score = timer * walkpoints;
         
 	}
 }

@@ -10,7 +10,7 @@ public class lvlMovement : MonoBehaviour {
     private Vector3 move;
     private float speed = 6;
 
-	void Update ()
+	void FixedUpdate ()
     {
         move = new Vector3(speed * Time.deltaTime, 0, 0);
 
