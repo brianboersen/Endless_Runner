@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public Image damageImage;
     private float flashSpeed = 5f;
     private Color flashColour = new Color(1f, 0f, 0f, 0.1f);
-
+    
     public PlayerMove playerMove;
 
     bool isDead;
@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+       
         lvlMeneger = canvas.GetComponent <Click_functions>();
         currentHealth = startingHealth;
     }
@@ -32,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
         {
             damaged = true;
             currentHealth -= 1;
-            
+            healthSlider.value = currentHealth;
             Debug.Log(currentHealth);
         }
     }
