@@ -2,12 +2,25 @@
 using System.Collections;
 
 public class PlayerDamage : MonoBehaviour
-{ 
+{
+    private float cooldown = 1f;
+    public float cdTimer;
+    private bool cdOn;
+
+    void Start()
+    {
+        cdOn = true;
+    }
+
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy1")
+        if(Input.GetKeyDown("e"))
         {
-            Destroy(other.gameObject);
+            if (other.gameObject.tag == "enemy")
+            {
+                Destroy(other.gameObject);
+            }
         }
+
     }
 }
