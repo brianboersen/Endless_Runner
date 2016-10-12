@@ -38,6 +38,15 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "LaserGrid")
+        {
+            currentHealth = 0;
+        }
+
+    }
+
+
 
     void Awake()
     {
