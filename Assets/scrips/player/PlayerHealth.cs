@@ -4,16 +4,17 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public GameObject canvas;
+    
     private Click_functions lvlMeneger;
     private int startingHealth = 3;
-    public int currentHealth = 0;
-
-    public Slider healthSlider;
-    public Image damageImage;
+    private int currentHealth = 0;
     private float flashSpeed = 5f;
     private Color flashColour = new Color(1f, 0f, 0f, 0.1f);
-    
+
+
+    public GameObject canvas;
+    public Slider healthSlider;
+    public Image damageImage;
     public PlayerMove playerMove;
 
     bool isDead;
