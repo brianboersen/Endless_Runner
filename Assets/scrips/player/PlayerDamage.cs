@@ -3,24 +3,46 @@ using System.Collections;
 
 public class PlayerDamage : MonoBehaviour
 {
-    private float cooldown = 1f;
-    public float cdTimer;
+    private IEnumerator coroutine;
+
     private bool cdOn;
 
     void Start()
     {
-        cdOn = true;
+        cdOn = false;
+
+        coroutine = WaitAndPrint(2.5f);
+        StartCoroutine(coroutine);
     }
 
-    void OnCollisionEnter(Collision other)
+    private IEnumerator WaitAndPrint(float waitTime)
     {
-        if(Input.GetKeyDown("e"))
+        while (true)
         {
-            if (other.gameObject.tag == "enemy")
-            {
-                Destroy(other.gameObject);
-            }
+            yield return new WaitForSeconds(waitTime);
+            cdOn = true;
         }
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "enemy" && cdOn == true)
+        {
+            Destroy(other.gameObject);
+            cdOn = false;
+        }
+    }
+
+    void Update()
+    {
+        if (cdOn == false)
+        {
+            GetComponent<Renderer>().material.color = Color.black;
+        }
+        else
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+        }
     }
 }

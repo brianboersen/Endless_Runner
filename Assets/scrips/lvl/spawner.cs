@@ -18,18 +18,8 @@ public class spawner : MonoBehaviour {
 
     private Quaternion q = Quaternion.Euler(-90, 0, 0);
 
-    void Start() {
-       
-
-  
-    }
-    
-	
-	
-	void Update () {
-  
-      
-
+	void Update ()
+    {
         if(Time.time > _spawnTime)
         {
             _spawnTime = Time.time + _waightTime;
@@ -45,10 +35,7 @@ public class spawner : MonoBehaviour {
             for (int i = 0; i < Random.Range(2,4); i++)
             {
                 Instantiate(enemies[0], EnemySpawnPosition(), Quaternion.identity);
-            }
-
-
-           
+            }   
         }  
 	}
     Vector3 EnemySpawnPosition()
