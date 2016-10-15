@@ -6,12 +6,13 @@ public class PlayerHealth : MonoBehaviour
 {
     
     private Click_functions lvlMeneger;
-    private int startingHealth = 3;
-    private int currentHealth = 0;
+    
+    
     private float flashSpeed = 5f;
     private Color flashColour = new Color(1f, 0f, 0f, 0.1f);
 
-
+    public int currentHealth = 0;
+    public int startingHealth;
     public GameObject canvas;
     public Slider healthSlider;
     public Image damageImage;
@@ -23,9 +24,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-       
-        lvlMeneger = canvas.GetComponent <Click_functions>();
         currentHealth = startingHealth;
+        healthSlider.maxValue = startingHealth;
+        healthSlider.value = currentHealth;
+       
+        lvlMeneger = canvas.GetComponent<Click_functions>();
     }
 
     void OnCollisionEnter(Collision other)
